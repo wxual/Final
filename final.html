@@ -21,7 +21,7 @@
           <option value="4" onclick="v02max()">v02-dMax</option>
        </select>
     </div>
-    <button type="button" class="btn btn-outline-light">PARAVIEW</button>
+    <button onclick="showparaview()" type="button" class="btn btn-outline-light">PARAVIEW</button>
     <button type="button" class="btn btn-outline-light">VTK</button>
 </nav>
 
@@ -92,8 +92,52 @@
 	background:url(icon.png) no-repeat -9px -45px;
 }
 </style>
+
+</head>
+<body>
+	<div id="container">
+  <div>
+    <canvas id="myChart"></canvas>
+  </div>
+</div>
+	<div  class="box">
+		<div id="picture" class="content">
+			<div id="1"></div>
+			<div id="2"></div>
+			<div id="3"></div>
+			<div id="4"></div>
+		</div>
+		<div class="control">
+			<!-- <span class="control-bar current"></span> -->
+			<!-- <span class="control-bar"></span>
+			<span class="control-bar"></span>
+			<span class="control-bar"></span>
+			<span class="control-bar"></span>
+			<span class="control-bar"></span>
+			<span class="control-bar"></span> -->
+		</div>
+		<span id="pre"></span>
+		<span id="next"></span>
+	</div>
 <script>
+    var value;
+    function showparaview()
+    {
+        if(value==0||value==1||value==3||value==2)
+        {
+
+    
+    var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();
+    img1.src="ya31/1.png";img2.src="ya31/2.png";img3.src="ya31/3.png";img4.src="ya31/4.png";
+    var imgContainer=document.getElementById("1");imgContainer.appendChild(img1);
+    var imgContainer=document.getElementById("2");imgContainer.appendChild(img2);
+    var imgContainer=document.getElementById("3");imgContainer.appendChild(img3);
+    var imgContainer=document.getElementById("4");imgContainer.appendChild(img4);
+    }
+    }
+    
 function v03max(){
+    value=2;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
     var c = document.getElementById('myChart')
@@ -148,6 +192,7 @@ function v03max(){
                 }}]}}});})
 }
  function v02max(){
+    value=4;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
     var c = document.getElementById('myChart')
@@ -201,6 +246,7 @@ function v03max(){
                 }}]}}});})
 }
  function v03min(){
+    value=1;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
     var c = document.getElementById('myChart')
@@ -266,6 +312,7 @@ function v03max(){
                 }}]}}});})
 }
 function v02min(){
+    varlue=3;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
     var c = document.getElementById('myChart')
@@ -332,166 +379,141 @@ function v02min(){
 }
 
 function getStyle(element, styleName){
-	if(element.currentStyle){
-		return element.currentStyle[styleName];
-	}else{
-		var computedStyle = window.getComputedStyle(element, null);
-		return computedStyle[styleName];
-	}
+    if(element.currentStyle){
+        return element.currentStyle[styleName];
+    }else{
+        var computedStyle = window.getComputedStyle(element, null);
+        return computedStyle[styleName];
+    }
 }
 function animate(element,json){
-	clearInterval(element.timer);
-	var isStop = false;
-	element.timer = setInterval(function(){
-		isStop = true;
-		for(var key in json){
-			var current = parseInt(getStyle(element, key));
-			var target = json[key];
-			var step = (target - current) / 10;
-			step = step > 0 ? Math.ceil(step) : Math.floor(step);
-			current += step;
-			if(Math.abs(target -current) > Math.abs(step)){
-				isStop = false;
-			}else{ 
-				current = target;
-			}
-			element.style[key] = current + 'px';	
-		}
-		if(isStop){
-			clearInterval(element.timer);
-		}
-	},10);
+    clearInterval(element.timer);
+    var isStop = false;
+    element.timer = setInterval(function(){
+        isStop = true;
+        for(var key in json){
+            var current = parseInt(getStyle(element, key));
+            var target = json[key];
+            var step = (target - current) / 10;
+            step = step > 0 ? Math.ceil(step) : Math.floor(step);
+            current += step;
+            if(Math.abs(target -current) > Math.abs(step)){
+                isStop = false;
+            }else{ 
+                current = target;
+            }
+            element.style[key] = current + 'px';    
+        }
+        if(isStop){
+            clearInterval(element.timer);
+        }
+    },10);
 }
 
 window.onload = function(){
-	var box = document.getElementsByClassName('box')[0];
-	var contentBox = document.getElementsByClassName('content')[0];
-	var controlBox = document.getElementsByClassName('control')[0];
-	var imageDivArr = contentBox.getElementsByTagName('div');
+    var box = document.getElementsByClassName('box')[0];
+    var contentBox = document.getElementsByClassName('content')[0];
+    var controlBox = document.getElementsByClassName('control')[0];
+    var imageDivArr = contentBox.getElementsByTagName('div');
 
-	var currentIndex = 0;
-	var boxWidth = box.offsetWidth;
+    var currentIndex = 0;
+    var boxWidth = box.offsetWidth;
 
-	for(var i= 0; i < imageDivArr.length; i++){
-		var span = document.createElement('span');
-		if(i == 0){
-			span.className = 'control-bar current';
-		}else{
-			span.className = 'control-bar'; 
-		}
-		span.index = i;
-		controlBox.appendChild(span);
+    for(var i= 0; i < imageDivArr.length; i++){
+        var span = document.createElement('span');
+        if(i == 0){
+            span.className = 'control-bar current';
+        }else{
+            span.className = 'control-bar'; 
+        }
+        span.index = i;
+        controlBox.appendChild(span);
 
-		span.onclick = function(){
+        span.onclick = function(){
 
-			if(currentIndex != this.index){
+            if(currentIndex != this.index){
 
-				if(this.index >　currentIndex){
+                if(this.index >　currentIndex){
 
-					animate(imageDivArr[currentIndex],{left:-boxWidth});
+                    animate(imageDivArr[currentIndex],{left:-boxWidth});
 
-					currentIndex = this.index;
-					imageDivArr[currentIndex].style.left = boxWidth;
+                    currentIndex = this.index;
+                    imageDivArr[currentIndex].style.left = boxWidth;
 
-				}else{ 
-					animate(imageDivArr[currentIndex],{left:boxWidth});
+                }else{ 
+                    animate(imageDivArr[currentIndex],{left:boxWidth});
 
-					currentIndex = this.index;
-					imageDivArr[currentIndex].style.left = -boxWidth;
-				}
+                    currentIndex = this.index;
+                    imageDivArr[currentIndex].style.left = -boxWidth;
+                }
 
-				//
-				animate(imageDivArr[currentIndex], {left : 0})
-	
-				refresh();
-			}
-		}
-	}
+                //
+                animate(imageDivArr[currentIndex], {left : 0})
+    
+                refresh();
+            }
+        }
+    }
 
-	var boxWidth = box.offsetWidth;
-	for(var i= 0; i < imageDivArr.length; i++){
-		var imgDiv = imageDivArr[i];
-		imgDiv.style.left = boxWidth + 'px';
-	}
-	imageDivArr[0].style.left = '0';
+    var boxWidth = box.offsetWidth;
+    for(var i= 0; i < imageDivArr.length; i++){
+        var imgDiv = imageDivArr[i];
+        imgDiv.style.left = boxWidth + 'px';
+    }
+    imageDivArr[0].style.left = '0';
 
 
-	function nextImage(){
-		animate(imageDivArr[currentIndex],{left:-boxWidth});
-	
-		currentIndex++;
-	
-		if(currentIndex >= imageDivArr.length){
-			currentIndex = 0;
-		}
-		imageDivArr[currentIndex].style.left = boxWidth + 'px';
-	
-		animate(imageDivArr[currentIndex],{left:0});
-		refresh();
-	}
+    function nextImage(){
+        animate(imageDivArr[currentIndex],{left:-boxWidth});
+    
+        currentIndex++;
+    
+        if(currentIndex >= imageDivArr.length){
+            currentIndex = 0;
+        }
+        imageDivArr[currentIndex].style.left = boxWidth + 'px';
+    
+        animate(imageDivArr[currentIndex],{left:0});
+        refresh();
+    }
 
-	function prevImage(){
-		animate(imageDivArr[currentIndex],{left:boxWidth}); 
-	
-		currentIndex--;
-	
-		if(currentIndex < 0){
-			currentIndex = imageDivArr.length - 1;
-		}
-		imageDivArr[currentIndex].style.left = (-boxWidth) + 'px';
-	
-		animate(imageDivArr[currentIndex],{left:0});
-		refresh();
-	}
+    function prevImage(){
+        animate(imageDivArr[currentIndex],{left:boxWidth}); 
+    
+        currentIndex--;
+    
+        if(currentIndex < 0){
+            currentIndex = imageDivArr.length - 1;
+        }
+        imageDivArr[currentIndex].style.left = (-boxWidth) + 'px';
+    
+        animate(imageDivArr[currentIndex],{left:0});
+        refresh();
+    }
 
-	function refresh(){
-		for(var i = 0; i < controlBox.children.length; i++ ){
-			var bar = controlBox.children[i];
-			bar.className = 'control-bar'
-		
-		}
-		controlBox.children[currentIndex].className = 'control-bar current';
-	}
+    function refresh(){
+        for(var i = 0; i < controlBox.children.length; i++ ){
+            var bar = controlBox.children[i];
+            bar.className = 'control-bar'
+        
+        }
+        controlBox.children[currentIndex].className = 'control-bar current';
+    }
 
-	document.getElementById('next').onclick = nextImage;
-	document.getElementById('pre').onclick = prevImage;
+    document.getElementById('next').onclick = nextImage;
+    document.getElementById('pre').onclick = prevImage;
 
-	var timer = setInterval(nextImage,2000);
+    var timer = setInterval(nextImage,2000);
 
-	box.onmouseover = function (){
-		clearInterval(timer);
-	}
-	box.onmouseout = function (){
-		timer = setInterval(nextImage ,2000);	
-	}
+    box.onmouseover = function (){
+        clearInterval(timer);
+    }
+    box.onmouseout = function (){
+        timer = setInterval(nextImage ,2000);   
+    }
 }
 
+
 </script>
-</head>
-<body>
-	<div id="container">
-  <div>
-    <canvas id="myChart"></canvas>
-  </div>
-</div>
-	<div class="box">
-		<div class="content">
-			<div><img src="ya31/1.png" alt="" /></div>
-			<div><img src="ya31/2.png" alt="" /></div>
-			<div><img src="ya31/3.png" alt="" /></div>
-			<div><img src="ya31/4.png" alt="" /></div>
-		</div>
-		<div class="control">
-			<!-- <span class="control-bar current"></span> -->
-			<!-- <span class="control-bar"></span>
-			<span class="control-bar"></span>
-			<span class="control-bar"></span>
-			<span class="control-bar"></span>
-			<span class="control-bar"></span>
-			<span class="control-bar"></span> -->
-		</div>
-		<span id="pre"></span>
-		<span id="next"></span>
-	</div>
 </body>
 </html>
