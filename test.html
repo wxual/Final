@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<title>d3-simple-slider</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://unpkg.com/d3-simple-slider/build/d3-simple-slider.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+  crossorigin="anonymous">
+
+<body>
+  <div class="container">
+    <h1>Basic example</h1>
+    <div class="row align-items-center">
+      <div class="col-sm-2">
+        <p id="value1"></p>
+      </div>
+      <div class="col-sm">
+        <div id="slider1"></div>
+      </div>
+    </div>
+    <a id="setValue1" href="#">Reset</a>
+  </div>
+</body>
+
+<script>
+  var data1 = [6817, 7920, 8948,9782];
+
+  var slider1 = d3.sliderHorizontal()
+    .min(d3.min(data1))
+    .max(d3.max(data1))
+    .width(300)
+     .step(1)
+    .on('onchange', val => {
+      d3.select("p#value1").text(d3.format('.2%')(val));
+    });
+
+  var group1 = d3.select("div#slider1").append("svg")
+    .attr("width", 500)
+    .attr("height", 100)
+    .append("g")
+    .attr("transform", "translate(30,30)");
+
+  group1.call(slider1);
+
+  d3.select("p#value1").text(d3.format('.2%')(slider1.value()))
+  d3.select("a#setValue1").on("click", () => { slider1.value(0.015); d3.event.preventDefault(); });
+
+ 
+</script>
+
+</html>
