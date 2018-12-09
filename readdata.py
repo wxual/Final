@@ -4,7 +4,7 @@ import numpy as np
 import json
 from pprint import pprint
 
-g= open("./ya11-v02.txt",'w') 
+g= open("./ya11-v03.txt",'w') 
 f=open("ya11-filename.txt","r")
 lines=f.readlines()
 f.close()
@@ -12,7 +12,7 @@ g.write("timestamp,dMax,dMin,dsum"+"\n")
 for i in range(0,len(lines)):
 	filename=lines[i].split('\n')[0]
 #the name of data array which is used in this example
-	daryName = 'v02' #'v03' 'prs' 'tev'
+	daryName = 'v03' #'v03' 'prs' 'tev'
 
 # for accessing build-in color access
 	colors = vtk.vtkNamedColors() 
