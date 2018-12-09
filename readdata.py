@@ -4,11 +4,11 @@ import numpy as np
 import json
 from pprint import pprint
 
-g= open("./ya2.txt",'w') 
-f=open("test_name.txt","r")
+g= open("./ya11-v02.txt",'w') 
+f=open("ya11-filename.txt","r")
 lines=f.readlines()
 f.close()
-g.write("timestamp,dMax,dMin,dRange"+"\n")
+g.write("timestamp,dMax,dMin,dsum"+"\n")
 for i in range(0,len(lines)):
 	filename=lines[i].split('\n')[0]
 #the name of data array which is used in this example
@@ -43,6 +43,6 @@ for i in range(0,len(lines)):
 	dary = VN.vtk_to_numpy(reader.GetOutput().GetPointData().GetScalars(daryName))
 	dMax = np.amax(dary)
 	dMin = np.amin(dary)
-	dRange = dMax - dMin
-	g.write(filename[66:71]+","+str(dMax)+","+str(dMin)+","+str(dRange)+"\n")
+	dsum = sum(dary)
+	g.write(filename[66:71]+","+str(dMax)+","+str(dMin)+","+str(dsum)+"\n")
 g.close()
