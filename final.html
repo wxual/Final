@@ -14,15 +14,38 @@
     <div class="form-group">
       <label class="text-white" for="sel1" >asteroid hit the water surface</label>
       <select class="form-control input-sm" id="sel1">
-          <option value="0" disabled selected>Select daryName</option>
-          <option value="1" onclick="v03min()">v03-dMin</option>
-          <option value="2" onclick="v03max()">v03-dMax</option>
-          <option value="3" onclick="v02min()">v02-dMin</option>
-          <option value="4" onclick="v02max()">v02-dMax</option>
+          <option value="0" disabled selected>Select DaryName</option>
+          <option value="1" onclick="ya31v03maxmin()">yA31-v03-dMax-dMin</option>
+          <option value="2" onclick="ya31v02maxmin()">yA31-v02-dMax-dMin</option>
+          <option value="3" onclick="ya31tevmaxmin()">yA31-tev-dMax-dMin</option>
+          <option value="4" onclick="ya31tevsum()">yA31-tev-Sum</option>
+          <option value="5" onclick="ya31prsmaxmin()">yA31-prs-dMax-dMin</option>
+       </select>
+    </div>
+    <div class="form-group">
+      <label class="text-white" for="sel1" >Tsunami</label>
+      <select class="form-control input-sm" id="sel1">
+          <option value="6" disabled selected>Select daryName</option>
+          <option value="7" onclick="ya11v03maxmin()">yA11-v03-dMax-dMin</option>
+          <option value="8" onclick="ya11v02maxmin()">yA11-v02-dMax-dMin</option>
+          <option value="9" onclick="ya11tevmaxmin()">yA11-tev-dMax-dMin</option>
+          <option value="10" onclick="ya11tevsum()">yA11-tev-Sum</option>
+          <option value="11" onclick="ya11prsmaxmin()">yA11-prs-dMax-dMin</option>
+       </select>
+    </div>
+    <div class="form-group">
+      <label class="text-white" for="sel1" >Airburst</label>
+      <select class="form-control input-sm" id="sel1">
+          <option value="12" disabled selected>Select daryName</option>
+          <option value="13" onclick="yC31v03maxmin()">yC31-v03-dMax-dMin</option>
+          <option value="14" onclick="yC31v02maxmin()">yC31-v02-dMax-dMin</option>
+          <option value="15" onclick="yC31tevmaxmin()">yC31-tev-dMax-dMin</option>
+          <option value="16" onclick="yC31tevsum()">yC31-tev-Sum</option>
+          <option value="17" onclick="yC31prsmaxmin()">yC31-prs-dMax-dMin</option>
        </select>
     </div>
     <button onclick="showparaview()" type="button" class="btn btn-outline-light">PARAVIEW</button>
-    <button type="button" class="btn btn-outline-light">VTK</button>
+    <button onclick="clean()"type="button" class="btn btn-outline-light">VTK</button>
 </nav>
 
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -30,15 +53,15 @@
 {margin: 0;padding: 0;}
 
 .box{
-	width: 620px;
-	height: 500px;
-	margin: 100px auto;
+	width: 930px;
+	height: 750px;
+	margin: 30px auto;
 	overflow: hidden;
 	position: relative;
 }
 .content{
-	width: 620px;
-	height: 440px;
+	width: 930px;
+	height: 660px;
 	overflow: hidden;
 	position: relative;
 }
@@ -48,13 +71,11 @@
 	left: 0;
 }
 .content div img{
-	width: 620px;
-	height: 440px;
+	width: 930px;
+	height: 660px;
 }
-
-
 .control{
-	width: 620px;
+	width: 930px;
 	height: 40px;
 	background-color: white;
 	text-align: center;
@@ -91,13 +112,16 @@
 	right: 3px;
 	background:url(icon.png) no-repeat -9px -45px;
 }
+#container{
+  height:632px;
+  }
 </style>
 
 </head>
 <body>
 	<div id="container">
-  <div>
-    <canvas id="myChart"></canvas>
+  <div >
+    <canvas  id="myChart"></canvas>
   </div>
 </div>
 	<div  class="box">
@@ -120,13 +144,12 @@
 		<span id="next"></span>
 	</div>
 <script>
+    var c = document.getElementById('myChart')
+    ctx=c.getContext('2d');
     var value;
     function showparaview()
     {
-        if(value==0||value==1||value==3||value==2)
-        {
-
-    
+    if(value==0||value==1||value==3||value==2||value==5){
     var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();
     img1.src="ya31/1.png";img2.src="ya31/2.png";img3.src="ya31/3.png";img4.src="ya31/4.png";
     var imgContainer=document.getElementById("1");imgContainer.appendChild(img1);
@@ -135,117 +158,7 @@
     var imgContainer=document.getElementById("4");imgContainer.appendChild(img4);
     }
     }
-    
-function v03max(){
-    value=2;
-    $('#myChart').remove();
-    $('#container').append('<canvas id="myChart"></canvas>');
-    var c = document.getElementById('myChart')
-    ctx=c.getContext('2d');
-    d3.csv("ya31-v03.csv", function(error,data) {
-
-        var max=[];
-        var Timestamp=[];
-        for(i=0;i<data.length;i++)
-        {
-            Timestamp[i]=data[i].timestamp;
-            max[i]=data[i].dMax;
-        }
-        var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-        labels: Timestamp,
-        datasets: [{
-            label: 'dMax',
-            data: max,
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            fill:false,
-            pointRadius:0,
-            showLine:true,
-            scaleSteps : 5000,
-            }]
-        },
-        options: {
-            title: {
-            display: true,
-            text: 'yA31 v03 max'
-            },
-            animation:{                          
-                duration:800 
-            },
-            scales: {
-            yAxes: [{
-                ticks: {
-                max: 1.2,
-                min: 0,
-                stepSize: 0.3
-            }}],
-            xAxes: [{
-                display: true,
-                ticks: {
-                autoSkipPadding:15
-                },
-                scaleLabel:{
-                    display:true,
-                    labelString:"timestamp"
-                }}]}}});})
-}
- function v02max(){
-    value=4;
-    $('#myChart').remove();
-    $('#container').append('<canvas id="myChart"></canvas>');
-    var c = document.getElementById('myChart')
-    ctx=c.getContext('2d');
-    d3.csv("ya31-v02.csv", function(error,data) {
-        var max=[];
-        var Timestamp=[];
-        for(i=0;i<data.length;i++)
-        {
-            Timestamp[i]=data[i].timestamp;
-            max[i]=data[i].dMax;
-        }
-        var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-        labels: Timestamp,
-        datasets: [{
-            label: 'dMax',
-            data: max,
-            backgroundColor: 'rgb(75, 192, 192)',
-            borderColor: 'rgb(75, 192, 192)',
-            fill:false,
-            pointRadius:0,
-            showLine:true,
-            scaleSteps : 5000,
-            }]
-        },
-        options: {
-            title: {
-            display: true,
-            text: 'yA31 v02 max'
-            },
-            animation:{                          
-                duration:800 
-            },
-            scales: {
-            yAxes: [{
-                ticks: {
-                max: 1.2,
-                min: 0,
-                stepSize: 0.3
-            }}],
-            xAxes: [{
-                display: true,
-                ticks: {
-                autoSkipPadding:15
-                },
-                scaleLabel:{
-                    display:true,
-                    labelString:"timestamp"
-                }}]}}});})
-}
- function v03min(){
+function ya31v03maxmin(){
     value=1;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
@@ -253,36 +166,58 @@ function v03max(){
     ctx=c.getContext('2d');
     d3.csv("ya31-v03.csv", function(error,data) {
         var min=[];
+        var max=[];
         var Timestamp=[];
-        for(i=0;i<data.length;i++){
+        for(i=0;i<data.length;i++)
+        {
             Timestamp[i]=data[i].timestamp;
+            max[i]=data[i].dMax;
             min[i]=data[i].dMin;
         }
-      
         var myChart = new Chart(ctx, {
         type: 'line',
         data: {
         labels: Timestamp,
         datasets: [{
+            yAxisID: 'A',
+            label: 'dMax',
+            data: max,
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+            scaleSteps : 5000,
+            },{
+            yAxisID: 'B',
             label: 'dMin',
             data: min,
             backgroundColor: 'rgb(54, 162, 235)',
             borderColor: 'rgb(54, 162, 235)',
             fill:false,
-            pointRadius:0,
+            pointRadius:1,
             showLine:true,
-            }]
+                }]
         },
         options: {
             title: {
             display: true,
-            text: 'yA31 v03 min'
+            text: 'yA31 v03 max and min'
             },
             animation:{                          
                 duration:800 
             },
             scales: {
             yAxes: [{
+                position: 'left',
+                id:'A',
+                ticks: {
+                max: 1.2,
+                min: 0,
+                stepSize: 0.12
+            }},{
+                id:'B',
+                position: 'right',
                 ticks: {
                     autoSkipPadding:10,
                     callback: function(value, index, values) {
@@ -296,59 +231,74 @@ function v03max(){
                     if(value==0){
                         return value;
                     }}}}],
-         elements: {
-            line: {
-                color: "rgba(153,255,51,0.6)"// disables bezier curves
-            }
-        },
             xAxes: [{
                 display: true,
                 ticks: {
-                autoSkipPadding:15,
+                autoSkipPadding:15
                 },
                 scaleLabel:{
                     display:true,
                     labelString:"timestamp"
                 }}]}}});})
 }
-function v02min(){
-    varlue=3;
+function ya31v02maxmin(){
+    value=2;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
     var c = document.getElementById('myChart')
     ctx=c.getContext('2d');
     d3.csv("ya31-v02.csv", function(error,data) {
-        var min=[];
-        var Timestamp=[];
-        for(i=0;i<data.length;i++){
+        var max=[];var min=[];var Timestamp=[];
+        for(i=0;i<data.length;i++)
+        {
             Timestamp[i]=data[i].timestamp;
+            max[i]=data[i].dMax;
             min[i]=data[i].dMin;
         }
-
         var myChart = new Chart(ctx, {
         type: 'line',
         data: {
         labels: Timestamp,
         datasets: [{
+            yAxisID: 'A',
+            label: 'dMax',
+            data: max,
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+            scaleSteps : 5000,
+            },{
+            yAxisID: 'B',
             label: 'dMin',
             data: min,
-            backgroundColor: 'rgb(153, 102, 255)',
-            borderColor: 'rgb(153, 102, 255)',
+            backgroundColor: 'rgb(54, 162, 235)',
+            borderColor: 'rgb(54, 162, 235)',
             fill:false,
-            pointRadius:1.5,
+            pointRadius:1,
             showLine:true,
             }]
         },
         options: {
             title: {
             display: true,
-            text: 'yA31 v02 min'
+            text: 'yA31 v02 max and min'
             },
             animation:{                          
                 duration:800 
             },
             scales: {
             yAxes: [{
+                id: 'A',
+                position: 'left',
+                ticks: {
+                max: 1.2,
+                min: 0,
+                stepSize: 0.4
+            }},{
+                id: 'B',
+                position: 'right',
                 ticks: {
                     autoSkipPadding:10,
                     callback: function(value, index, values) {
@@ -362,15 +312,344 @@ function v02min(){
                     if(value==0){
                         return value;
                     }}}}],
-         elements: {
-            line: {
-                color: "rgba(153,255,51,0.6)"// disables bezier curves
-            }
-        },
             xAxes: [{
                 display: true,
                 ticks: {
-                autoSkipPadding:15,
+                autoSkipPadding:15
+                },
+                scaleLabel:{
+                    display:true,
+                    labelString:"timestamp"
+                }}]}}});})
+}
+function ya31tevmaxmin(){
+    value=3;
+    $('#myChart').remove();
+    $('#container').append('<canvas id="myChart"></canvas>');
+    var c = document.getElementById('myChart')
+    ctx=c.getContext('2d');
+    d3.csv("ya31-tev.csv", function(error,data) {
+        var max=[];var min=[];var Timestamp=[];
+        for(i=0;i<data.length;i++)
+        {
+            Timestamp[i]=data[i].timestamp;
+            max[i]=data[i].dMax;
+            min[i]=data[i].dMin;
+        }
+        var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+        labels: Timestamp,
+        datasets: [{
+            yAxisID: 'A',
+            label: 'dMax',
+            data: max,
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+            scaleSteps : 5000,
+            },{
+            yAxisID: 'B',
+            label: 'dMin',
+            data: min,
+            backgroundColor: 'rgb(54, 162, 235)',
+            borderColor: 'rgb(54, 162, 235)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+            }]
+        },
+        options: {
+            title: {
+            display: true,
+            text: 'yA31 tev max and min'
+            },
+            animation:{                          
+                duration:800 
+            },
+            scales: {
+            yAxes: [{
+                id: 'A',
+                position: 'left',
+                ticks: {
+                max: 2.5,
+                min: 0,
+                stepSize: 0.25
+            }},{
+                id: 'B',
+                position: 'right',
+                ticks: {
+                max: 0.02,
+                min: 0.010,
+                stepSize: 0.001
+            }}],
+            xAxes: [{
+                display: true,
+                ticks: {
+                autoSkipPadding:15
+                },
+                scaleLabel:{
+                    display:true,
+                    labelString:"timestamp"
+                }}]}}});})
+}
+function ya31tevsum(){
+    value=4;
+    $('#myChart').remove();
+    $('#container').append('<canvas id="myChart"></canvas>');
+    var c = document.getElementById('myChart')
+    ctx=c.getContext('2d');
+    d3.csv("ya31-tev.csv", function(error,data) {
+        var sum=[];var Timestamp=[];
+        for(i=0;i<data.length;i++)
+        {
+            Timestamp[i]=data[i].timestamp;
+            sum[i]=data[i].dsum;
+        }
+        var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+        labels: Timestamp,
+        datasets: [{
+            yAxisID: 'A',
+            label: 'sum',
+            data: sum,
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+            scaleSteps : 5000,
+            }]
+        },
+        options: {
+            title: {
+            display: true,
+            text: 'yA31 tev max and min'
+            },
+            animation:{                          
+                duration:800 
+            },
+            scales: {
+            yAxes: [{
+                id: 'A',
+                position: 'left',
+                }],
+            xAxes: [{
+                display: true,
+                ticks: {
+                autoSkipPadding:15
+                },
+                scaleLabel:{
+                    display:true,
+                    labelString:"timestamp"
+                }}]}}});})
+}
+function ya31prsmaxmin(){
+    value=5;
+    $('#myChart').remove();
+    $('#container').append('<canvas id="myChart"></canvas>');
+    var c = document.getElementById('myChart')
+    ctx=c.getContext('2d');
+    d3.csv("ya31-prs.csv", function(error,data) {
+        var min=[];
+        var max=[];
+        var Timestamp=[];
+        for(i=0;i<data.length;i++)
+        {
+            Timestamp[i]=data[i].timestamp;
+            max[i]=data[i].dMax;
+            min[i]=data[i].dMin;
+        }
+        var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+        labels: Timestamp,
+        datasets: [{
+            yAxisID: 'A',
+            label: 'dMax',
+            data: max,
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+            scaleSteps : 5000,
+            },{
+            yAxisID: 'B',
+            label: 'dMin',
+            data: min,
+            backgroundColor: 'rgb(54, 162, 235)',
+            borderColor: 'rgb(54, 162, 235)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+                }]
+        },
+        options: {
+            title: {
+            display: true,
+            text: 'yA31 v03 max and min'
+            },
+            animation:{                          
+                duration:800 
+            },
+            scales: {
+            yAxes: [{
+                position: 'left',
+                id:'A',
+               },{
+                id:'B',
+                position: 'right',
+                }],
+            xAxes: [{
+                display: true,
+                ticks: {
+                autoSkipPadding:15
+                },
+                scaleLabel:{
+                    display:true,
+                    labelString:"timestamp"
+                }}]}}});})
+}
+function ya11tevmaxmin(){
+    value=9;
+    $('#myChart').remove();
+    $('#container').append('<canvas id="myChart"></canvas>');
+    var c = document.getElementById('myChart')
+    ctx=c.getContext('2d');
+    d3.csv("ya11-tev.csv", function(error,data) {
+        var max=[];var min=[];var Timestamp=[];
+        for(i=0;i<data.length;i++)
+        {
+            Timestamp[i]=data[i].timestamp;
+            max[i]=data[i].dMax;
+            min[i]=data[i].dMin;
+        }
+        var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+        labels: Timestamp,
+        datasets: [{
+            yAxisID: 'A',
+            label: 'dMax',
+            data: max,
+            backgroundColor: 'rgb(75, 192, 192)',
+            borderColor: 'rgb(75, 192, 192)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+            scaleSteps : 5000,
+            },{
+            yAxisID: 'B',
+            label: 'dMin',
+            data: min,
+            backgroundColor: 'rgb(153, 102, 255)',
+            borderColor: 'rgb(153, 102, 255)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+            }]
+        },
+        options: {
+            title: {
+            display: true,
+            text: 'yA11 tev max and min'
+            },
+            animation:{                          
+                duration:800 
+            },
+            scales: {
+            yAxes: [{
+                id: 'A',
+                position: 'left',
+                ticks: {
+                max: 1.2,
+                min: 0,
+                stepSize: 0.4
+            }},{
+                id: 'B',
+                position: 'right',
+                ticks: {
+                max: 0.0195,
+                min: 0.0150,
+                stepSize: 0.0005
+            }}],
+            xAxes: [{
+                display: true,
+                ticks: {
+                autoSkipPadding:15
+                },
+                scaleLabel:{
+                    display:true,
+                    labelString:"timestamp"
+                }}]}}});})
+}
+function ya11prsmaxmin(){
+    value=11;
+    $('#myChart').remove();
+    $('#container').append('<canvas id="myChart"></canvas>');
+    var c = document.getElementById('myChart')
+    ctx=c.getContext('2d');
+    d3.csv("ya11-prs.csv", function(error,data) {
+        var max=[];var min=[];var Timestamp=[];
+        for(i=0;i<data.length;i++)
+        {
+            Timestamp[i]=data[i].timestamp;
+            max[i]=data[i].dMax;
+            min[i]=data[i].dMin;
+        }
+        var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+        labels: Timestamp,
+        datasets: [{
+            yAxisID: 'A',
+            label: 'dMax',
+            data: max,
+            backgroundColor: 'rgb(75, 192, 192)',
+            borderColor: 'rgb(75, 192, 192)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+            scaleSteps : 5000,
+            },{
+            yAxisID: 'B',
+            label: 'dMin',
+            data: min,
+            backgroundColor: 'rgb(153, 102, 255)',
+            borderColor: 'rgb(153, 102, 255)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+            }]
+        },
+        options: {
+            title: {
+            display: true,
+            text: 'yA11 prs max and min'
+            },
+            animation:{                          
+                duration:800 
+            },
+            scales: {
+            yAxes: [{
+                id: 'A',
+                position: 'left',
+                },{
+                id: 'B',
+                position: 'right',
+                ticks: {
+                max: 36000,
+                min: 18000,
+                stepSize: 2000
+            }}],
+            xAxes: [{
+                display: true,
+                ticks: {
+                autoSkipPadding:15
                 },
                 scaleLabel:{
                     display:true,
