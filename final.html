@@ -656,7 +656,171 @@ function ya11prsmaxmin(){
                     labelString:"timestamp"
                 }}]}}});})
 }
-
+function ya11v02maxmin(){
+    value=9;
+    $('#myChart').remove();
+    $('#container').append('<canvas id="myChart"></canvas>');
+    var c = document.getElementById('myChart')
+    ctx=c.getContext('2d');
+    d3.csv("ya11-v02.csv", function(error,data) {
+        var max=[];var min=[];var Timestamp=[];
+        for(i=0;i<data.length;i++)
+        {
+            Timestamp[i]=data[i].timestamp;
+            max[i]=data[i].dMax;
+            min[i]=data[i].dMin;
+        }
+        var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+        labels: Timestamp,
+        datasets: [{
+            yAxisID: 'A',
+            label: 'dMax',
+            data: max,
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+            scaleSteps : 5000,
+            },{
+            yAxisID: 'B',
+            label: 'dMin',
+            data: min,
+            backgroundColor: 'rgb(54, 162, 235)',
+            borderColor: 'rgb(54, 162, 235)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+            }]
+        },
+        options: {
+            title: {
+            display: true,
+            text: 'yA31 v02 max and min'
+            },
+            animation:{                          
+                duration:800 
+            },
+            scales: {
+            yAxes: [{
+                id: 'A',
+                position: 'left',
+                ticks: {
+                max: 1.2,
+                min: 0,
+                stepSize: 0.4
+            }},{
+                id: 'B',
+                position: 'right',
+                ticks: {
+                    autoSkipPadding:10,
+                    callback: function(value, index, values) {
+                    if(value<=-10e-27){
+                        a=value*100000000000000000000000000
+                        return a.toFixed(1)+"e-26";
+                    }
+                    if(value>-10e-27&&value<0){
+                        a=value*1000000000000000000000000000
+                        return a.toFixed(1)+"e-27";}
+                    if(value==0){
+                        return value;
+                    }}}}],
+            xAxes: [{
+                display: true,
+                ticks: {
+                autoSkipPadding:15
+                },
+                scaleLabel:{
+                    display:true,
+                    labelString:"timestamp"
+                }}]}}});})
+}
+function ya11v03maxmin(){
+    value=1;
+    $('#myChart').remove();
+    $('#container').append('<canvas id="myChart"></canvas>');
+    var c = document.getElementById('myChart')
+    ctx=c.getContext('2d');
+    d3.csv("ya11-v03.csv", function(error,data) {
+        var min=[];
+        var max=[];
+        var Timestamp=[];
+        for(i=0;i<data.length;i++)
+        {
+            Timestamp[i]=data[i].timestamp;
+            max[i]=data[i].dMax;
+            min[i]=data[i].dMin;
+        }
+        var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+        labels: Timestamp,
+        datasets: [{
+            yAxisID: 'A',
+            label: 'dMax',
+            data: max,
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+            scaleSteps : 5000,
+            },{
+            yAxisID: 'B',
+            label: 'dMin',
+            data: min,
+            backgroundColor: 'rgb(54, 162, 235)',
+            borderColor: 'rgb(54, 162, 235)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+                }]
+        },
+        options: {
+            title: {
+            display: true,
+            text: 'yA11 v03 max and min'
+            },
+            animation:{                          
+                duration:800 
+            },
+            scales: {
+            yAxes: [{
+                position: 'left',
+                id:'A',
+                ticks: {
+                max: 1.2,
+                min: 0,
+                stepSize: 0.3
+            }},{
+                id:'B',
+                position: 'right',
+                ticks: {
+                    autoSkipPadding:10,
+                    callback: function(value, index, values) {
+                        console.log(value)
+                    if(value<-9e-29){
+                        a=value*10000000000000000000000000000
+                        return a.toFixed(1)+"e-28";
+                    }
+                    if(value>-9e-29&&value<0){
+                        a=value*100000000000000000000000000000
+                        return a.toFixed(1)+"e-29";}
+                    if(value==0){
+                        return value;
+                    }}}}],
+            xAxes: [{
+                display: true,
+                ticks: {
+                autoSkipPadding:15
+                },
+                scaleLabel:{
+                    display:true,
+                    labelString:"timestamp"
+                }}]}}});})
+}
 function getStyle(element, styleName){
     if(element.currentStyle){
         return element.currentStyle[styleName];
