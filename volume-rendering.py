@@ -22,7 +22,7 @@ data = json.load(json_data)
 json_data.close()
 
 #the name of data array which is used in this example
-daryName = 'v03' #'v03' 'prs' 'tev'
+daryName = 'tev' #'v03' 'prs' 'tev'
 
 # for accessing build-in color access
 colors = vtk.vtkNamedColors() 
@@ -55,6 +55,7 @@ dary = VN.vtk_to_numpy(reader.GetOutput().GetPointData().GetScalars(daryName))
 dMax = np.amax(dary)
 dMin = np.amin(dary)
 dRange = dMax - dMin
+print(sum(dary))
 
 
 ########## setup color map ###########
