@@ -26,11 +26,11 @@
       <label class="text-white" for="sel1" >Tsunami</label>
       <select class="form-control input-sm" id="sel1">
           <option value="6" disabled selected>Select daryName</option>
-          <option value="7" onclick="ya11v03maxmin()">yA11-v03-dMax-dMin</option>
-          <option value="8" onclick="ya11v02maxmin()">yA11-v02-dMax-dMin</option>
-          <option value="9" onclick="ya11tevmaxmin()">yA11-tev-dMax-dMin</option>
-          <option value="10" onclick="ya11tevsum()">yA11-tev-Sum</option>
-          <option value="11" onclick="ya11prsmaxmin()">yA11-prs-dMax-dMin</option>
+          <option value="7" onclick="ya32v03maxmin()">yA11-v03-dMax-dMin</option>
+          <option value="8" onclick="ya32v02maxmin()">yA11-v02-dMax-dMin</option>
+          <option value="9" onclick="ya32tevmaxmin()">yA11-tev-dMax-dMin</option>
+          <option value="10" onclick="ya32tevsum()">yA11-tev-Sum</option>
+          <option value="11" onclick="ya32prsmaxmin()">yA11-prs-dMax-dMin</option>
        </select>
     </div>
     <div class="form-group">
@@ -185,6 +185,7 @@ function showvtk()
 function showparaview()
     {
     if(value==0||value==1||value==3||value==2||value==5){
+  
     var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();var img5=new Image();var img0=new Image();
     img1.src="ya31/1.png";img2.src="ya31/2.png";img3.src="ya31/3.png";img4.src="ya31/4.png";img5.src="ya31/5.png";img0.src="ya31/0.png";
     var imgContainer=document.getElementById("0");imgContainer.appendChild(img0);
@@ -196,8 +197,9 @@ function showparaview()
     }
     
     if(value==7||value==8||value==9||value==10||value==11){
-    var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();var img5=new Image();
-    img1.src="ya32/1.png";img2.src="ya32/2.png";img3.src="ya32/3.png";img4.src="ya32/4.png";img5.src="ya32/5.png";
+    var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();var img5=new Image();var img0=new Image();
+    img0.src="ya32/0.png";img1.src="ya32/1.png";img2.src="ya32/2.png";img3.src="ya32/3.png";img4.src="ya32/4.png";img5.src="ya32/5.png";
+    var imgContainer=document.getElementById("0");imgContainer.appendChild(img0);
     var imgContainer=document.getElementById("1");imgContainer.appendChild(img1);
     var imgContainer=document.getElementById("2");imgContainer.appendChild(img2);
     var imgContainer=document.getElementById("3");imgContainer.appendChild(img3);
@@ -792,7 +794,7 @@ function ya31prsmaxmin(){
                     display:true,
                     labelString:"timestamp"
                 }}]}}});})}
-function ya11tevmaxmin(){
+function ya32tevmaxmin(){
     value=9;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
@@ -864,7 +866,7 @@ function ya11tevmaxmin(){
                     display:true,
                     labelString:"timestamp"
                 }}]}}});})}
-function ya11prsmaxmin(){
+function ya32prsmaxmin(){
     value=11;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
@@ -932,7 +934,7 @@ function ya11prsmaxmin(){
                     display:true,
                     labelString:"timestamp"
                 }}]}}});})}
-function ya11v02maxmin(){
+function ya32v02maxmin(){
     value=9;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
@@ -1012,7 +1014,7 @@ function ya11v02maxmin(){
                     display:true,
                     labelString:"timestamp"
                 }}]}}});})}
-function ya11v03maxmin(){
+function ya32v03maxmin(){
     value=1;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
