@@ -16,13 +16,13 @@ from pprint import pprint
 # http://oceans11.lanl.gov/deepwaterimpact/yA31/300x300x300-FourScalars_resolution/pv_insitu_300x300x300_49275.vti 
 
 #setup the dataset filepath (change this file path to where you store the dataset)
-filename = '/Volumes/My Passport/迅雷下载/任务组_20181203_1501/pv_insitu_300x300x300_08948.vti'
-json_data=open('/Users/yijiang/Documents/GitHub/Final/v03.json')
+filename = '/Volumes/My Passport/迅雷下载/yc31/pv_insitu_300x300x300_09113.vti'
+json_data=open('/Users/yijiang/Documents/GitHub/Final/yc31color.json')
 data = json.load(json_data)
 json_data.close()
 
 #the name of data array which is used in this example
-daryName = 'tev' #'v03' 'prs' 'tev'
+daryName = 'v03' #'v03' 'prs' 'tev'
 
 # for accessing build-in color access
 colors = vtk.vtkNamedColors() 
@@ -39,8 +39,8 @@ iren.SetRenderWindow(renWin)
 
 # Set a background color for the renderer and set the size of the
 # render window.
-aRenderer.SetBackground(100/255, 77/255, 102/255)
-renWin.SetSize(600, 600)
+aRenderer.SetBackground(0.6, 0.6, 0.6)
+renWin.SetSize(1600, 1200)
 
 # data reader
 reader = vtk.vtkXMLImageDataReader()
@@ -89,7 +89,7 @@ volumeScalarOpacity = vtk.vtkPiecewiseFunction()
 nOpaPoint = int( len( data[0]['Points'])/4 ) # number of opacity function control point
 for i in range( nOpaPoint ):
     dtValue = data[0]['Points'][i*4]
-    opaValue = data[0]['Points'][i*4+1]*0.2
+    opaValue = data[0]['Points'][i*4+1]*0.3
     volumeScalarOpacity.AddPoint(dtValue, opaValue)
     print('opacity control point: ', i, ': ', dtValue, opaValue)
 volumeColor = vtk.vtkColorTransferFunction()
@@ -124,7 +124,7 @@ volumeProperty.ShadeOn()
 volumeProperty.SetAmbient(0.4)
 volumeProperty.SetDiffuse(0.6)
 volumeProperty.SetSpecular(0.2)
-volumeProperty.SetScalarOpacityUnitDistance(3000)
+volumeProperty.SetScalarOpacityUnitDistance(8000)
 
 
 volume = vtk.vtkVolume()
@@ -134,7 +134,6 @@ volume.SetProperty(volumeProperty)
 
     # Finally, add the volume to the renderer
 aRenderer.AddVolume(volume)
-aRenderer.AddActor(outline)
 
 text = vtk.vtkTextActor()
 text.SetInput("Scalar Value(v02)")
@@ -143,7 +142,7 @@ tprop.SetFontFamilyToArial()
 tprop.ShadowOff()
 tprop.SetLineSpacing(1.0)
 tprop.SetFontSize(36)
-text.SetDisplayPosition(20, 100)
+text.SetDisplayPosition(0, 0)
 aRenderer.AddActor2D(text)
 
 scalar_bar = vtk.vtkScalarBarActor()
@@ -166,9 +165,10 @@ aCamera = vtk.vtkCamera()
 aCamera.SetViewUp(0, 0, -1)
 aCamera.SetPosition(0, -1, 0)
 aCamera.SetFocalPoint(0, 0, 0)
+aCamera.SetViewAngle(120)
 aCamera.ComputeViewPlaneNormal()
-aCamera.Azimuth(30.0)
-aCamera.Elevation(30.0)
+aCamera.Azimuth(180.0)
+aCamera.Elevation(-20.0)
 
 # Actors are added to the renderer.
 

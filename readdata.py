@@ -4,16 +4,16 @@ import numpy as np
 import json
 from pprint import pprint
 
-g= open("./ya11-v03.txt",'w') 
-f=open("ya11-filename.txt","r")
+g= open("./yc31-prs.txt",'w') 
+f=open("yc31-filename.txt","r")
 lines=f.readlines()
 f.close()
 g.write("timestamp,dMax,dMin,dsum"+"\n")
 for i in range(0,len(lines)):
 	filename=lines[i].split('\n')[0]
 #the name of data array which is used in this example
-	daryName = 'v03' #'v03' 'prs' 'tev'
-
+	daryName = 'prs' #'v03' 'prs' 'tev'
+	print(filename[53:58])
 # for accessing build-in color access
 	colors = vtk.vtkNamedColors() 
 
@@ -44,5 +44,5 @@ for i in range(0,len(lines)):
 	dMax = np.amax(dary)
 	dMin = np.amin(dary)
 	dsum = sum(dary)
-	g.write(filename[66:71]+","+str(dMax)+","+str(dMin)+","+str(dsum)+"\n")
+	g.write(filename[53:58]+","+str(dMax)+","+str(dMin)+","+str(dsum)+"\n")
 g.close()

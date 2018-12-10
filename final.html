@@ -38,14 +38,12 @@
       <select class="form-control input-sm" id="sel1">
           <option value="12" disabled selected>Select daryName</option>
           <option value="13" onclick="yC31v03maxmin()">yC31-v03-dMax-dMin</option>
-          <option value="14" onclick="yC31v02maxmin()">yC31-v02-dMax-dMin</option>
           <option value="15" onclick="yC31tevmaxmin()">yC31-tev-dMax-dMin</option>
-          <option value="16" onclick="yC31tevsum()">yC31-tev-Sum</option>
           <option value="17" onclick="yC31prsmaxmin()">yC31-prs-dMax-dMin</option>
        </select>
     </div>
     <button onclick="showparaview()" type="button" class="btn btn-outline-light">PARAVIEW</button>
-    <button onclick="clean()"type="button" class="btn btn-outline-light">VTK</button>
+    <button onclick="showvtk()"type="button" class="btn btn-outline-light">VTK</button>
 </nav>
 
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -126,10 +124,12 @@
 </div>
 	<div  class="box">
 		<div id="picture" class="content">
+            <div id="0"></div>
 			<div id="1"></div>
 			<div id="2"></div>
 			<div id="3"></div>
 			<div id="4"></div>
+            <div id="5"></div>
 		</div>
 		<div class="control">
 			<!-- <span class="control-bar current"></span> -->
@@ -144,27 +144,310 @@
 		<span id="next"></span>
 	</div>
 <script>
+
     var c = document.getElementById('myChart')
     ctx=c.getContext('2d');
     var value;
-    function showparaview()
+function showvtk()
     {
     if(value==0||value==1||value==3||value==2||value==5){
-    var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();
-    img1.src="ya31/1.png";img2.src="ya31/2.png";img3.src="ya31/3.png";img4.src="ya31/4.png";
+    var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();var img5=new Image();var img0=new Image();
+    img1.src="ya31/1.png";img2.src="ya31/2.png";img3.src="ya31/3.png";img4.src="ya31/4.png";img5.src="ya31/5.png";img0.src="ya31/0.png";
+    var imgContainer=document.getElementById("0");imgContainer.appendChild(img0);
     var imgContainer=document.getElementById("1");imgContainer.appendChild(img1);
     var imgContainer=document.getElementById("2");imgContainer.appendChild(img2);
     var imgContainer=document.getElementById("3");imgContainer.appendChild(img3);
     var imgContainer=document.getElementById("4");imgContainer.appendChild(img4);
+    var imgContainer=document.getElementById("5");imgContainer.appendChild(img5);
+    }
+    
+    if(value==7||value==8||value==9||value==10||value==11){
+    var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();var img5=new Image();
+    img1.src="ya32/1.png";img2.src="ya32/2.png";img3.src="ya32/3.png";img4.src="ya32/4.png";img5.src="ya32/5.png";
+    var imgContainer=document.getElementById("1");imgContainer.appendChild(img1);
+    var imgContainer=document.getElementById("2");imgContainer.appendChild(img2);
+    var imgContainer=document.getElementById("3");imgContainer.appendChild(img3);
+    var imgContainer=document.getElementById("4");imgContainer.appendChild(img4);
+    var imgContainer=document.getElementById("5");imgContainer.appendChild(img5);
+    }
+    if(value==14||value==13||value==17){
+    var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();var img5=new Image();var img0=new Image();
+    img1.src="yc31/7.jpg";img2.src="yc31/8.jpg";img3.src="yc31/9.jpg";img4.src="yc31/10.jpg";img5.src="yc31/11.jpg";img0.src="yc31/6.jpg";
+    var imgContainer=document.getElementById("0");imgContainer.appendChild(img0);
+    var imgContainer=document.getElementById("1");imgContainer.appendChild(img1);
+    var imgContainer=document.getElementById("2");imgContainer.appendChild(img2);
+    var imgContainer=document.getElementById("3");imgContainer.appendChild(img3);
+    var imgContainer=document.getElementById("4");imgContainer.appendChild(img4);
+    var imgContainer=document.getElementById("5");imgContainer.appendChild(img5);
     }
     }
+
+function showparaview()
+    {
+    if(value==0||value==1||value==3||value==2||value==5){
+    var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();var img5=new Image();var img0=new Image();
+    img1.src="ya31/1.png";img2.src="ya31/2.png";img3.src="ya31/3.png";img4.src="ya31/4.png";img5.src="ya31/5.png";img0.src="ya31/0.png";
+    var imgContainer=document.getElementById("0");imgContainer.appendChild(img0);
+    var imgContainer=document.getElementById("1");imgContainer.appendChild(img1);
+    var imgContainer=document.getElementById("2");imgContainer.appendChild(img2);
+    var imgContainer=document.getElementById("3");imgContainer.appendChild(img3);
+    var imgContainer=document.getElementById("4");imgContainer.appendChild(img4);
+    var imgContainer=document.getElementById("5");imgContainer.appendChild(img5);
+    }
+    
+    if(value==7||value==8||value==9||value==10||value==11){
+    var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();var img5=new Image();
+    img1.src="ya32/1.png";img2.src="ya32/2.png";img3.src="ya32/3.png";img4.src="ya32/4.png";img5.src="ya32/5.png";
+    var imgContainer=document.getElementById("1");imgContainer.appendChild(img1);
+    var imgContainer=document.getElementById("2");imgContainer.appendChild(img2);
+    var imgContainer=document.getElementById("3");imgContainer.appendChild(img3);
+    var imgContainer=document.getElementById("4");imgContainer.appendChild(img4);
+    var imgContainer=document.getElementById("5");imgContainer.appendChild(img5);
+    }
+    if(value==14||value==13||value==17){
+    var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();var img5=new Image();var img0=new Image();
+    img1.src="yc31/1.png";img2.src="yc31/2.png";img3.src="yc31/3.png";img4.src="yc31/4.png";img5.src="yc31/5.png";img0.src="yc31/0.png";
+    var imgContainer=document.getElementById("0");imgContainer.appendChild(img0);
+    var imgContainer=document.getElementById("1");imgContainer.appendChild(img1);
+    var imgContainer=document.getElementById("2");imgContainer.appendChild(img2);
+    var imgContainer=document.getElementById("3");imgContainer.appendChild(img3);
+    var imgContainer=document.getElementById("4");imgContainer.appendChild(img4);
+    var imgContainer=document.getElementById("5");imgContainer.appendChild(img5);
+    }
+    }
+function yC31tevmaxmin(){
+    value=13;
+    $('#myChart').remove();
+    $('#container').append('<canvas id="myChart"></canvas>');
+    var c = document.getElementById('myChart')
+    ctx=c.getContext('2d');
+    d3.csv("data/yc31/yc31-tev.csv", function(error,data) {
+        var min=[];
+        var max=[];
+        var Timestamp=[];
+        for(i=0;i<data.length;i++)
+        {
+            Timestamp[i]=data[i].timestamp;
+            max[i]=data[i].dMax;
+            min[i]=data[i].dMin;
+        }
+        var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+        labels: Timestamp,
+        datasets: [{
+            yAxisID: 'A',
+            label: 'dMax',
+            data: max,
+            backgroundColor: '#58595b',
+            borderColor: '#58595b',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+            scaleSteps : 5000,
+            },{
+            yAxisID: 'B',
+            label: 'dMin',
+            data: min,
+            backgroundColor: 'rgb(255, 159, 64)',
+            borderColor: 'rgb(255, 159, 64)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+                }]
+        },
+        options: {
+            title: {
+            display: true,
+            text: 'yC31 tev max and min'
+            },
+            animation:{                          
+                duration:800 
+            },
+            scales: {
+            yAxes: [{
+                position: 'left',
+                id:'A',
+                 ticks: {
+                max: 2.1,
+                min: 0,
+                stepSize: 0.3
+                }
+                
+                },{
+                id:'B',
+                position: 'right',
+
+                }],
+            xAxes: [{
+                display: true,
+                ticks: {
+                autoSkipPadding:15
+                },
+                scaleLabel:{
+                    display:true,
+                    labelString:"timestamp"
+                }}]}}});})}
+function yC31prsmaxmin(){
+    value=17;
+    $('#myChart').remove();
+    $('#container').append('<canvas id="myChart"></canvas>');
+    var c = document.getElementById('myChart')
+    ctx=c.getContext('2d');
+    d3.csv("data/yc31/yc31-prs.csv", function(error,data) {
+        var min=[];
+        var max=[];
+        var Timestamp=[];
+        for(i=0;i<data.length;i++)
+        {
+            Timestamp[i]=data[i].timestamp;
+            max[i]=data[i].dMax;
+            min[i]=data[i].dMin;
+        }
+        var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+        labels: Timestamp,
+        datasets: [{
+            yAxisID: 'A',
+            label: 'dMax',
+            data: max,
+            backgroundColor: '#58595b',
+            borderColor: '#58595b',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+            scaleSteps : 5000,
+            },{
+            yAxisID: 'B',
+            label: 'dMin',
+            data: min,
+            backgroundColor: 'rgb(255, 159, 64)',
+            borderColor: 'rgb(255, 159, 64)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+                }]
+        },
+        options: {
+            title: {
+            display: true,
+            text: 'yC31 prs max and min'
+            },
+            animation:{                          
+                duration:800 
+            },
+            scales: {
+            yAxes: [{
+                position: 'left',
+                id:'A',
+                
+                },{
+                id:'B',
+                position: 'right',
+
+                }],
+            xAxes: [{
+                display: true,
+                ticks: {
+                autoSkipPadding:15
+                },
+                scaleLabel:{
+                    display:true,
+                    labelString:"timestamp"
+                }}]}}});})}
+function yC31v03maxmin(){
+    value=14;
+    $('#myChart').remove();
+    $('#container').append('<canvas id="myChart"></canvas>');
+    var c = document.getElementById('myChart')
+    ctx=c.getContext('2d');
+    d3.csv("data/yc31/yc31-v03.csv", function(error,data) {
+        var min=[];
+        var max=[];
+        var Timestamp=[];
+        for(i=0;i<data.length;i++)
+        {
+            Timestamp[i]=data[i].timestamp;
+            max[i]=data[i].dMax;
+            min[i]=data[i].dMin;
+        }
+        var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+        labels: Timestamp,
+        datasets: [{
+            yAxisID: 'A',
+            label: 'dMax',
+            data: max,
+            backgroundColor: '#58595b',
+            borderColor: '#58595b',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+            scaleSteps : 5000,
+            },{
+            yAxisID: 'B',
+            label: 'dMin',
+            data: min,
+            backgroundColor: 'rgb(255, 159, 64)',
+            borderColor: 'rgb(255, 159, 64)',
+            fill:false,
+            pointRadius:1,
+            showLine:true,
+                }]
+        },
+        options: {
+            title: {
+            display: true,
+            text: 'yC31 v03 max and min'
+            },
+            animation:{                          
+                duration:800 
+            },
+            scales: {
+            yAxes: [{
+                position: 'left',
+                id:'A',
+                ticks: {
+                max: 1.02,
+                min: 0.66,
+                stepSize: 0.06
+                }
+                },{
+                id:'B',
+                position: 'right',
+                ticks: {
+                    autoSkipPadding:10,
+                    callback: function(value, index, values) {
+                    console.log(value)
+                    if(value<-5e-28){
+                        a=value*1000000000000000000000000000
+                        return a.toFixed(1)+"e-27";
+                    }
+                    if(value>=-5e-28&&value<0){
+                        a=value*10000000000000000000000000000
+                        return a.toFixed(1)+"e-28";}
+                    if(value==0){
+                        return value;
+                    }}}
+                }],
+            xAxes: [{
+                display: true,
+                ticks: {
+                autoSkipPadding:15
+                },
+                scaleLabel:{
+                    display:true,
+                    labelString:"timestamp"
+                }}]}}});})}
 function ya31v03maxmin(){
     value=1;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
     var c = document.getElementById('myChart')
     ctx=c.getContext('2d');
-    d3.csv("ya31-v03.csv", function(error,data) {
+    d3.csv("data/ya31/ya31-v03.csv", function(error,data) {
         var min=[];
         var max=[];
         var Timestamp=[];
@@ -239,15 +522,14 @@ function ya31v03maxmin(){
                 scaleLabel:{
                     display:true,
                     labelString:"timestamp"
-                }}]}}});})
-}
+                }}]}}});})}
 function ya31v02maxmin(){
     value=2;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
     var c = document.getElementById('myChart')
     ctx=c.getContext('2d');
-    d3.csv("ya31-v02.csv", function(error,data) {
+    d3.csv("data/ya31/ya31-v02.csv", function(error,data) {
         var max=[];var min=[];var Timestamp=[];
         for(i=0;i<data.length;i++)
         {
@@ -320,15 +602,14 @@ function ya31v02maxmin(){
                 scaleLabel:{
                     display:true,
                     labelString:"timestamp"
-                }}]}}});})
-}
+                }}]}}});})}
 function ya31tevmaxmin(){
     value=3;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
     var c = document.getElementById('myChart')
     ctx=c.getContext('2d');
-    d3.csv("ya31-tev.csv", function(error,data) {
+    d3.csv("data/ya31/ya31-tev.csv", function(error,data) {
         var max=[];var min=[];var Timestamp=[];
         for(i=0;i<data.length;i++)
         {
@@ -393,15 +674,14 @@ function ya31tevmaxmin(){
                 scaleLabel:{
                     display:true,
                     labelString:"timestamp"
-                }}]}}});})
-}
+                }}]}}});})}
 function ya31tevsum(){
     value=4;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
     var c = document.getElementById('myChart')
     ctx=c.getContext('2d');
-    d3.csv("ya31-tev.csv", function(error,data) {
+    d3.csv("data/ya31/ya31-tev.csv", function(error,data) {
         var sum=[];var Timestamp=[];
         for(i=0;i<data.length;i++)
         {
@@ -427,7 +707,7 @@ function ya31tevsum(){
         options: {
             title: {
             display: true,
-            text: 'yA31 tev max and min'
+            text: 'yA31 tev sum'
             },
             animation:{                          
                 duration:800 
@@ -445,15 +725,14 @@ function ya31tevsum(){
                 scaleLabel:{
                     display:true,
                     labelString:"timestamp"
-                }}]}}});})
-}
+                }}]}}});})}
 function ya31prsmaxmin(){
     value=5;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
     var c = document.getElementById('myChart')
     ctx=c.getContext('2d');
-    d3.csv("ya31-prs.csv", function(error,data) {
+    d3.csv("data/ya31/ya31-prs.csv", function(error,data) {
         var min=[];
         var max=[];
         var Timestamp=[];
@@ -491,7 +770,7 @@ function ya31prsmaxmin(){
         options: {
             title: {
             display: true,
-            text: 'yA31 v03 max and min'
+            text: 'yA31 prs max and min'
             },
             animation:{                          
                 duration:800 
@@ -512,15 +791,14 @@ function ya31prsmaxmin(){
                 scaleLabel:{
                     display:true,
                     labelString:"timestamp"
-                }}]}}});})
-}
+                }}]}}});})}
 function ya11tevmaxmin(){
     value=9;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
     var c = document.getElementById('myChart')
     ctx=c.getContext('2d');
-    d3.csv("ya11-tev.csv", function(error,data) {
+    d3.csv("data/ya11/ya11-tev.csv", function(error,data) {
         var max=[];var min=[];var Timestamp=[];
         for(i=0;i<data.length;i++)
         {
@@ -585,15 +863,14 @@ function ya11tevmaxmin(){
                 scaleLabel:{
                     display:true,
                     labelString:"timestamp"
-                }}]}}});})
-}
+                }}]}}});})}
 function ya11prsmaxmin(){
     value=11;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
     var c = document.getElementById('myChart')
     ctx=c.getContext('2d');
-    d3.csv("ya11-prs.csv", function(error,data) {
+    d3.csv("data/ya11/ya11-prs.csv", function(error,data) {
         var max=[];var min=[];var Timestamp=[];
         for(i=0;i<data.length;i++)
         {
@@ -654,15 +931,14 @@ function ya11prsmaxmin(){
                 scaleLabel:{
                     display:true,
                     labelString:"timestamp"
-                }}]}}});})
-}
+                }}]}}});})}
 function ya11v02maxmin(){
     value=9;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
     var c = document.getElementById('myChart')
     ctx=c.getContext('2d');
-    d3.csv("ya11-v02.csv", function(error,data) {
+    d3.csv("data/ya11/ya11-v02.csv", function(error,data) {
         var max=[];var min=[];var Timestamp=[];
         for(i=0;i<data.length;i++)
         {
@@ -678,8 +954,8 @@ function ya11v02maxmin(){
             yAxisID: 'A',
             label: 'dMax',
             data: max,
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgb(75, 192, 192)',
+            borderColor: 'rgb(75, 192, 192)',
             fill:false,
             pointRadius:1,
             showLine:true,
@@ -688,8 +964,8 @@ function ya11v02maxmin(){
             yAxisID: 'B',
             label: 'dMin',
             data: min,
-            backgroundColor: 'rgb(54, 162, 235)',
-            borderColor: 'rgb(54, 162, 235)',
+            backgroundColor: 'rgb(153, 102, 255)',
+            borderColor: 'rgb(153, 102, 255)',
             fill:false,
             pointRadius:1,
             showLine:true,
@@ -735,15 +1011,14 @@ function ya11v02maxmin(){
                 scaleLabel:{
                     display:true,
                     labelString:"timestamp"
-                }}]}}});})
-}
+                }}]}}});})}
 function ya11v03maxmin(){
     value=1;
     $('#myChart').remove();
     $('#container').append('<canvas id="myChart"></canvas>');
     var c = document.getElementById('myChart')
     ctx=c.getContext('2d');
-    d3.csv("ya11-v03.csv", function(error,data) {
+    d3.csv("data/ya11/ya11-v03.csv", function(error,data) {
         var min=[];
         var max=[];
         var Timestamp=[];
@@ -761,8 +1036,8 @@ function ya11v03maxmin(){
             yAxisID: 'A',
             label: 'dMax',
             data: max,
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgb(75, 192, 192)',
+            borderColor: 'rgb(75, 192, 192)',
             fill:false,
             pointRadius:1,
             showLine:true,
@@ -771,8 +1046,8 @@ function ya11v03maxmin(){
             yAxisID: 'B',
             label: 'dMin',
             data: min,
-            backgroundColor: 'rgb(54, 162, 235)',
-            borderColor: 'rgb(54, 162, 235)',
+            backgroundColor: 'rgb(153, 102, 255)',
+            borderColor: 'rgb(153, 102, 255)',
             fill:false,
             pointRadius:1,
             showLine:true,
@@ -819,8 +1094,7 @@ function ya11v03maxmin(){
                 scaleLabel:{
                     display:true,
                     labelString:"timestamp"
-                }}]}}});})
-}
+                }}]}}});})}
 function getStyle(element, styleName){
     if(element.currentStyle){
         return element.currentStyle[styleName];
