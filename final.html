@@ -42,8 +42,8 @@
           <option value="17" onclick="yC31prsmaxmin()">yC31-prs-dMax-dMin</option>
        </select>
     </div>
-    <button onclick="showparaview()" type="button" class="btn btn-outline-light">PARAVIEW</button>
-    <button onclick="showvtk()"type="button" class="btn btn-outline-light">VTK</button>
+    <button onclick="showparaview()" type="button" class="btn btn-outline-light">VTK and PARAVIEW</button>
+   
 </nav>
 
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -130,6 +130,12 @@
 			<div id="3"></div>
 			<div id="4"></div>
             <div id="5"></div>
+            <div id="6"></div>
+            <div id="7"></div>
+            <div id="8"></div>
+            <div id="9"></div>
+            <div id="10"></div>
+            <div id="11"></div>
 		</div>
 		<div class="control">
 			<!-- <span class="control-bar current"></span> -->
@@ -148,39 +154,7 @@
     var c = document.getElementById('myChart')
     ctx=c.getContext('2d');
     var value;
-function showvtk()
-    {
-    if(value==0||value==1||value==3||value==2||value==5){
-    var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();var img5=new Image();var img0=new Image();
-    img1.src="ya31/1.png";img2.src="ya31/2.png";img3.src="ya31/3.png";img4.src="ya31/4.png";img5.src="ya31/5.png";img0.src="ya31/0.png";
-    var imgContainer=document.getElementById("0");imgContainer.appendChild(img0);
-    var imgContainer=document.getElementById("1");imgContainer.appendChild(img1);
-    var imgContainer=document.getElementById("2");imgContainer.appendChild(img2);
-    var imgContainer=document.getElementById("3");imgContainer.appendChild(img3);
-    var imgContainer=document.getElementById("4");imgContainer.appendChild(img4);
-    var imgContainer=document.getElementById("5");imgContainer.appendChild(img5);
-    }
-    
-    if(value==7||value==8||value==9||value==10||value==11){
-    var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();var img5=new Image();
-    img1.src="ya32/1.png";img2.src="ya32/2.png";img3.src="ya32/3.png";img4.src="ya32/4.png";img5.src="ya32/5.png";
-    var imgContainer=document.getElementById("1");imgContainer.appendChild(img1);
-    var imgContainer=document.getElementById("2");imgContainer.appendChild(img2);
-    var imgContainer=document.getElementById("3");imgContainer.appendChild(img3);
-    var imgContainer=document.getElementById("4");imgContainer.appendChild(img4);
-    var imgContainer=document.getElementById("5");imgContainer.appendChild(img5);
-    }
-    if(value==14||value==13||value==17){
-    var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();var img5=new Image();var img0=new Image();
-    img1.src="yc31/7.jpg";img2.src="yc31/8.jpg";img3.src="yc31/9.jpg";img4.src="yc31/10.jpg";img5.src="yc31/11.jpg";img0.src="yc31/6.jpg";
-    var imgContainer=document.getElementById("0");imgContainer.appendChild(img0);
-    var imgContainer=document.getElementById("1");imgContainer.appendChild(img1);
-    var imgContainer=document.getElementById("2");imgContainer.appendChild(img2);
-    var imgContainer=document.getElementById("3");imgContainer.appendChild(img3);
-    var imgContainer=document.getElementById("4");imgContainer.appendChild(img4);
-    var imgContainer=document.getElementById("5");imgContainer.appendChild(img5);
-    }
-    }
+
 
 function showparaview()
     {
@@ -188,12 +162,20 @@ function showparaview()
   
     var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();var img5=new Image();var img0=new Image();
     img1.src="ya31/1.png";img2.src="ya31/2.png";img3.src="ya31/3.png";img4.src="ya31/4.png";img5.src="ya31/5.png";img0.src="ya31/0.png";
+    var img6=new Image();var img7=new Image();var img8=new Image();var img9=new Image();var img10=new Image();var img11=new Image();
+    img7.src="ya31/1.png";img8.src="ya31/2.png";img9.src="ya31/3.png";img10.src="ya31/4.png";img11.src="ya31/5.png";img6.src="ya31/0.png";
     var imgContainer=document.getElementById("0");imgContainer.appendChild(img0);
     var imgContainer=document.getElementById("1");imgContainer.appendChild(img1);
     var imgContainer=document.getElementById("2");imgContainer.appendChild(img2);
     var imgContainer=document.getElementById("3");imgContainer.appendChild(img3);
     var imgContainer=document.getElementById("4");imgContainer.appendChild(img4);
     var imgContainer=document.getElementById("5");imgContainer.appendChild(img5);
+    var imgContainer=document.getElementById("6");imgContainer.appendChild(img6);
+    var imgContainer=document.getElementById("7");imgContainer.appendChild(img7);
+    var imgContainer=document.getElementById("8");imgContainer.appendChild(img8);
+    var imgContainer=document.getElementById("9");imgContainer.appendChild(img9);
+    var imgContainer=document.getElementById("10");imgContainer.appendChild(img10);
+    var imgContainer=document.getElementById("11");imgContainer.appendChild(img11);
     }
     
     if(value==7||value==8||value==9||value==10||value==11){
@@ -205,16 +187,24 @@ function showparaview()
     var imgContainer=document.getElementById("3");imgContainer.appendChild(img3);
     var imgContainer=document.getElementById("4");imgContainer.appendChild(img4);
     var imgContainer=document.getElementById("5");imgContainer.appendChild(img5);
+
     }
     if(value==14||value==13||value==17){
-    var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();var img5=new Image();var img0=new Image();
+    var img1=new Image();var img2=new Image();var img3=new Image();var img4=new Image();var img5=new Image();var img0=new Image();var img6=new Image();var img7=new Image();var img8=new Image();var img9=new Image();var img10=new Image();var img11=new Image();
     img1.src="yc31/1.png";img2.src="yc31/2.png";img3.src="yc31/3.png";img4.src="yc31/4.png";img5.src="yc31/5.png";img0.src="yc31/0.png";
+    img6.src="yc31/6.jpg";img7.src="yc31/7.jpg";img8.src="yc31/8.jpg";img9.src="yc31/9.jpg";img10.src="yc31/10.jpg";img11.src="yc31/11.jpg";
     var imgContainer=document.getElementById("0");imgContainer.appendChild(img0);
     var imgContainer=document.getElementById("1");imgContainer.appendChild(img1);
     var imgContainer=document.getElementById("2");imgContainer.appendChild(img2);
     var imgContainer=document.getElementById("3");imgContainer.appendChild(img3);
     var imgContainer=document.getElementById("4");imgContainer.appendChild(img4);
     var imgContainer=document.getElementById("5");imgContainer.appendChild(img5);
+    var imgContainer=document.getElementById("6");imgContainer.appendChild(img6);
+    var imgContainer=document.getElementById("7");imgContainer.appendChild(img7);
+    var imgContainer=document.getElementById("8");imgContainer.appendChild(img8);
+    var imgContainer=document.getElementById("9");imgContainer.appendChild(img9);
+    var imgContainer=document.getElementById("10");imgContainer.appendChild(img10);
+    var imgContainer=document.getElementById("11");imgContainer.appendChild(img11);
     }
     }
 function yC31tevmaxmin(){
